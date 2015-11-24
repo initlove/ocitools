@@ -14,6 +14,7 @@ VERSION:
    
 COMMANDS:
    generate     generate a OCI spec file
+   bundleValidate verify if a bundle was valid 
    help, h      Shows a list of commands or help for one command
    
 GLOBAL OPTIONS:
@@ -57,6 +58,22 @@ OPTIONS:
    --prestart [--prestart option --prestart option]     path to prestart hooks
    --poststop [--poststop option --poststop option]     path to poststop hooks
    --root-propagation                                   mount propagation for root
+```
+
+Bundle Validate
+------------------------------------------
+
+```
+# ocitools bundleValidate --help
+NAME:
+   bundleValidate - bundleValidate a OCI spec file
+
+USAGE:
+   command bundleValidate [command options] [arguments...]
+
+OPTIONS:
+   --path       path to the bundle (could either be a directory or an archived file)
+
 ```
 
 Testing OCI runtimes
