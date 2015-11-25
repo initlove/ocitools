@@ -13,9 +13,10 @@ VERSION:
    0.0.1
    
 COMMANDS:
-   generate     generate a OCI spec file
-   bundleValidate verify if a bundle was valid 
-   help, h      Shows a list of commands or help for one command
+   generate             generate a OCI spec file
+   bundleValidate       validate a OCI bundle
+   validate             validate a OCI spec file
+   help, h              Shows a list of commands or help for one command
    
 GLOBAL OPTIONS:
    --help, -h           show help
@@ -66,7 +67,7 @@ Bundle Validate
 ```
 # ocitools bundleValidate --help
 NAME:
-   bundleValidate - bundleValidate a OCI spec file
+   bundleValidate - validate a OCI bundle
 
 USAGE:
    command bundleValidate [command options] [arguments...]

@@ -17,7 +17,7 @@ var bundleValidateFlags = []cli.Flag{
 
 var bundleValidateCommand = cli.Command{
 	Name:  "bundleValidate",
-	Usage: "bundleValidate a OCI spec file",
+	Usage: "validate a OCI bundle",
 	Flags: bundleValidateFlags,
 	Action: func(context *cli.Context) {
 		inputPath := context.String("path")
@@ -28,7 +28,7 @@ var bundleValidateCommand = cli.Command{
 		if fi, err := os.Stat(inputPath); err != nil {
 			logrus.Fatal(err)
 		} else if !fi.IsDir() {
-			logrus.Fatalf("The archival format is not defined in OCI yet.")
+			logrus.Fatalf("Archival format is not defined in OCI yet.")
 		}
 
 		sf, err := os.Open(path.Join(inputPath, "config.json"))
