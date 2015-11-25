@@ -89,7 +89,7 @@ func CheckMountPoints(mps []specs.MountPoint, rmps map[string]specs.Mount, rootf
 		}
 
 		if _, ok := rmps[mps[index].Name]; !ok {
-			logrus.Fatalf("%s in config/mount is not exist in runtime/mount", mps[index].Name)
+			logrus.Fatalf("%s in config/mount does not exist in runtime/mount", mps[index].Name)
 		}
 	}
 }
@@ -114,7 +114,7 @@ func CheckLinuxSpec(spec specs.LinuxSpec, runtime specs.LinuxRuntimeSpec) {
 	for index := 0; index < len(spec.Linux.Capabilities); index++ {
 		capability := spec.Linux.Capabilities[index]
 		if !capValid(capability) {
-			logrus.Fatalf("%s is not valid, please `man capabilities`", spec.Linux.Capabilities[index])
+			logrus.Fatalf("%s is not valid, please see `man capabilities`", spec.Linux.Capabilities[index])
 		}
 	}
 }
@@ -122,21 +122,21 @@ func CheckLinuxSpec(spec specs.LinuxSpec, runtime specs.LinuxRuntimeSpec) {
 //Linux only
 func CheckLinuxRuntime(runtime specs.LinuxRuntime, rootfs string) {
 	if len(runtime.UIDMappings) > 5 {
-		logrus.Fatalf("The UID mapping is limited to 5.")
+		logrus.Fatalf("Only 5 UID mappings are allowed (linux kernel restriction).")
 	}
 	if len(runtime.GIDMappings) > 5 {
-		logrus.Fatalf("The GID mapping is limited to 5.")
+		logrus.Fatalf("Only 5 GID mappings are allowed (linux kernel restriction).")
 	}
 
 	for index := 0; index < len(runtime.Rlimits); index++ {
 		if !rlimitValid(runtime.Rlimits[index].Type) {
-			logrus.Fatalf("The Rlimit %s is invalid.", runtime.Rlimits[index])
+			logrus.Fatalf("Rlimit %s is invalid.", runtime.Rlimits[index])
 		}
 	}
 
 	for index := 0; index < len(runtime.Namespaces); index++ {
 		if !namespaceValid(runtime.Namespaces[index]) {
-			logrus.Fatalf("The Namespace %s is invalid.", runtime.Namespaces[index])
+			logrus.Fatalf("Namespace %s is invalid.", runtime.Namespaces[index])
 		}
 	}
 
