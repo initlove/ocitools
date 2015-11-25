@@ -44,7 +44,7 @@ var bundleValidateCommand = cli.Command{
 			logrus.Fatal(err)
 		} else {
 			if spec.Platform.OS != "linux" {
-				logrus.Fatalf("The operation system '%s' of the bundle is not support yet.", spec.Platform.OS)
+				logrus.Fatalf("Operation system '%s' of the bundle is not support yet.", spec.Platform.OS)
 			}
 		}
 
@@ -85,7 +85,7 @@ func CheckMountPoints(mps []specs.MountPoint, rmps map[string]specs.Mount, rootf
 		if fi, err := os.Stat(mountPath); err != nil {
 			logrus.Fatal(err)
 		} else if !fi.IsDir() {
-			logrus.Fatalf("The mountPoint %s is not a valid directory", mountPath)
+			logrus.Fatalf("Mount point %s is not a valid directory", mountPath)
 		}
 
 		if _, ok := rmps[mps[index].Name]; !ok {
@@ -107,14 +107,14 @@ func CheckLinuxSpec(spec specs.LinuxSpec, runtime specs.LinuxRuntimeSpec) {
 			}
 		}
 		if !found {
-			logrus.Fatalf("The mount %s is missing.", paths[pIndex])
+			logrus.Fatalf("Mount %s is missing.", paths[pIndex])
 		}
 	}
 
 	for index := 0; index < len(spec.Linux.Capabilities); index++ {
 		capability := spec.Linux.Capabilities[index]
 		if !capValid(capability) {
-			logrus.Fatalf("%s is not valid, please see `man capabilities`", spec.Linux.Capabilities[index])
+			logrus.Fatalf("%s is not valid, man capabilities(7)", spec.Linux.Capabilities[index])
 		}
 	}
 }
@@ -151,13 +151,13 @@ func CheckLinuxRuntime(runtime specs.LinuxRuntime, rootfs string) {
 			}
 		}
 		if found == false {
-			logrus.Fatalf("The required device %s is missing.", devices[index])
+			logrus.Fatalf("Required device %s is missing.", devices[index])
 		}
 	}
 
 	for index := 0; index < len(runtime.Devices); index++ {
 		if !deviceValid(runtime.Devices[index]) {
-			logrus.Fatalf("The device %s is invalid.", runtime.Devices[index].Path)
+			logrus.Fatalf("Device %s is invalid.", runtime.Devices[index].Path)
 		}
 	}
 
