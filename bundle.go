@@ -61,7 +61,7 @@ var bundleValidateCommand = cli.Command{
 		}
 
 		bundleValidate(spec, runtime, path.Join(inputPath, "rootfs"))
-		logrus.Infof("Bundle test succeeded.")
+		logrus.Infof("Bundle validate succeeded.")
 	},
 }
 
